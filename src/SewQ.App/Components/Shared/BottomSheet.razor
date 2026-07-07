@@ -1,0 +1,28 @@
+<div class="sheet-backdrop @(Open ? "show" : "")" @onclick="HandleClose"></div>
+<div class="sheet @(Open ? "show" : "")">
+    <div class="sheet-header">
+        <span class="sheet-title">@Title</span>
+        <button class="sheet-close" @onclick="HandleClose" aria-label="Close">×</button>
+    </div>
+    @ChildContent
+    @if (!string.IsNullOrEmpty(Error))
+    {
+        <div class="field-error">@Error</div>
+    }
+    <div class="sheet-actions">
+        <button class="btn-cancel" @onclick="HandleClose">Cancel</button>
+        <button class="btn-save" @onclick="HandleSave">Save</button>
+    </div>
+</div>
+
+@code {
+    [Parameter] public bool Open { get; set; }
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string? Error { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public EventCallback OnSave { get; set; }
+
+    private Task HandleClose() => OnClose.InvokeAsync();
+    private Task HandleSave() => OnSave.InvokeAsync();
+}
