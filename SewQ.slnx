@@ -1,7 +1,0 @@
-<Solution>
-  <Folder Name="/src/">
-    <Project Path="src/SewQ.App/SewQ.App.csproj" />
-    <Project Path="src/SewQ.Data/SewQ.Data.csproj" />
-    <Project Path="src/SewQ.Services/SewQ.Services.csproj" />
-  </Folder>
-</Solution>
